@@ -4,7 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 
-namespace MRSTWeb.App_Start
+namespace eUseControl.App_Start
+
 {
     public class BundleConfig
     {
@@ -15,15 +16,15 @@ namespace MRSTWeb.App_Start
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/animate.min.css",
                 "~/Content/bootstrap.min.css",
-                "~/Content/flaticon.min.css",
-                "~/Content/font-awesome.css",
+                "~/Content/flaticon.css",
+                "~/Content/font-awesome.min.css",
                 "~/Content/gijgo.css",
                 "~/Content/magnific-popup.css",
                 "~/Content/nice-select.css",
                 "~/Content/owl.carousel.min.css",
                 "~/Content/slick.css",
                 "~/Content/slicknav.css",
-                "~/Content/style.css",          // lipseau ghilimelele
+                "~/Content/style.css",
                 "~/Content/theme-default.css",
                 "~/Content/themify-icons.css"
             ));
@@ -50,16 +51,13 @@ namespace MRSTWeb.App_Start
                 "~/Scripts/vendor/gigjo.min.js",
                 "~/Scripts/vendor/plugins.js",
                 "~/Scripts/vendor/contact.js",
-                "~/Scripts/vendor/mail-script.js", // dacă există
+                "~/Scripts/vendor/mail-script.js",
                 "~/Scripts/vendor/nice-select.min.js",
                 "~/Scripts/vendor/ajax-form.js",
                 "~/Scripts/vendor/scrollIt.js",
-                // adaugă oricare alte fișiere JS pe care le ai în /vendor
                 "~/Scripts/vendor/main.js"
             ));
-
-            // (Opțional) Activare optimizări în mod producție:
-            // BundleTable.EnableOptimizations = true;
+            BundleTable.EnableOptimizations = true;
         }
     }
 }

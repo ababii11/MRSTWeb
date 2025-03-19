@@ -286,6 +286,16 @@
     <Folder Include="Models\" />
     <Folder Include="Views\Login\" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\eUseControl.BusinessLogic\eUseControl.BusinessLogic.csproj">
+      <Project>{152e219d-6675-4054-bc75-a2af21b885ed}</Project>
+      <Name>eUseControl.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\eUseControl.Domain\eUseControl.Domain.csproj">
+      <Project>{bdf02569-5f89-4e07-8d4c-a553a13470ed}</Project>
+      <Name>eUseControl.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
