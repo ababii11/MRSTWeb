@@ -12,6 +12,9 @@ namespace eUseControl.App_Start
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+                "~/Scripts/jquery.validate*"));
+
             // CSS Bundles
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Content/animate.min.css",
@@ -24,7 +27,7 @@ namespace eUseControl.App_Start
                 "~/Content/owl.carousel.min.css",
                 "~/Content/slick.css",
                 "~/Content/slicknav.css",
-                "~/Content/style.css",
+                "~/Content/style.css",          
                 "~/Content/theme-default.css",
                 "~/Content/themify-icons.css"
             ));
@@ -57,7 +60,7 @@ namespace eUseControl.App_Start
                 "~/Scripts/vendor/scrollIt.js",
                 "~/Scripts/vendor/main.js"
             ));
-            BundleTable.EnableOptimizations = true;
+
         }
     }
 }
