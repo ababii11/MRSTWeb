@@ -1,0 +1,93 @@
+@{
+    ViewBag.Title = "Recipes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Our Recipes</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /bradcam_area  -->
+
+<!-- recepie_area_start  -->
+<div class="recepie_area plus_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single_recepie text-center">
+                    <div class="recepie_thumb">
+                        <img src="~/img/recepie/recpie_1.png" alt="">
+                    </div>
+                    <h3>Egg Manchurian</h3>
+                    <span>Appetizer</span>
+                    <p>Time Needs: 30 Mins</p>
+                    <a href="@Url.Action("RecipeDetails", "Home", new { id = 1 })" class="line_btn">View Full Recipe</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single_recepie text-center">
+                    <div class="recepie_thumb">
+                        <img src="~/img/recepie/recpie_2.png" alt="">
+                    </div>
+                    <h3>Pure Vegetable Bowl</h3>
+                    <span>Appetizer</span>
+                    <p>Time Needs: 30 Mins</p>
+                    <a href="@Url.Action("RecipeDetails", "Home", new { id = 2 })" class="line_btn">View Full Recipe</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single_recepie text-center">
+                    <div class="recepie_thumb">
+                        <img src="~/img/recepie/recpie_3.png" alt="">
+                    </div>
+                    <h3>Egg Masala Ramen</h3>
+                    <span>Appetizer</span>
+                    <p>Time Needs: 30 Mins</p>
+                    <a href="@Url.Action("RecipeDetails", "Home", new { id = 3 })" class="line_btn">View Full Recipe</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single_recepie text-center">
+                    <div class="recepie_thumb">
+                        <img src="~/img/recepie/recpie_4.png" alt="">
+                    </div>
+                    <h3>Chicken Curry</h3>
+                    <span>Main Course</span>
+                    <p>Time Needs: 45 Mins</p>
+                    <a href="@Url.Action("RecipeDetails", "Home", new { id = 4 })" class="line_btn">View Full Recipe</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single_recepie text-center">
+                    <div class="recepie_thumb">
+                        <img src="~/img/recepie/recpie_5.png" alt="">
+                    </div>
+                    <h3>Vegetable Biryani</h3>
+                    <span>Main Course</span>
+                    <p>Time Needs: 50 Mins</p>
+                    <a href="@Url.Action("RecipeDetails", "Home", new { id = 5 })" class="line_btn">View Full Recipe</a>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-4 col-md-6">
+                <div class="single_recepie text-center">
+                    <div class="recepie_thumb">
+                        <img src="~/img/recepie/recpie_6.png" alt="">
+                    </div>
+                    <h3>Fish Curry</h3>
+                    <span>Main Course</span>
+                    <p>Time Needs: 40 Mins</p>
+                    <a href="@Url.Action("RecipeDetails", "Home", new { id = 6 })" class="line_btn">View Full Recipe</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /recepie_area_end  --> 

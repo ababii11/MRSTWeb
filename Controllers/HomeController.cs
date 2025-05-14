@@ -19,5 +19,18 @@ namespace MRSTWeb.Controllers
         {
             return View();
         }
+
+        // GET: Recipes
+        public ActionResult Recipes()
+        {
+            return View();
+        }
+
+        // GET: Recipe Details
+        public ActionResult RecipeDetails(int id)
+        {
+            // TODO: Fetch recipe details based on id
+            return View();
+        }
     }
 }
