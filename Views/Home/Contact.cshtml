@@ -1,0 +1,222 @@
+@{
+    ViewBag.Title = "Contact";
+}
+
+<style>
+    .contact-section {
+        font-family: "Roboto", sans-serif;
+        padding: 120px 0;
+        background-color: #F5FBFF;
+    }
+
+    .contact-title {
+        font-family: "Satisfy", cursive;
+        font-size: 60px;
+        line-height: 60px;
+        color: #000;
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .contact-box {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.04);
+        margin-bottom: 30px;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+    }
+
+    .form-group label {
+        color: #001D38;
+        font-weight: 500;
+        margin-bottom: 10px;
+        font-size: 16px;
+        display: block;
+    }
+
+    .form-control {
+        height: 50px;
+        border: 1px solid #e8e8e8;
+        border-radius: 5px;
+        padding: 0 20px;
+        font-size: 15px;
+        font-weight: 400;
+        color: #001D38;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #615CFD;
+        box-shadow: none;
+    }
+
+    textarea.form-control {
+        height: 150px;
+        padding: 20px;
+        resize: none;
+    }
+
+    .btn-submit {
+        background: #615CFD;
+        color: #fff;
+        padding: 18px 44px;
+        font-size: 14px;
+        font-weight: 400;
+        border: 0;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-submit:hover {
+        background: #FF008C;
+        color: #fff;
+    }
+
+    .contact-info {
+        background: #fff;
+        padding: 40px;
+        border-radius: 10px;
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.04);
+        height: 100%;
+    }
+
+    .contact-info h4 {
+        font-family: "Satisfy", cursive;
+        font-size: 32px;
+        color: #001D38;
+        margin-bottom: 30px;
+    }
+
+    .contact-info p {
+        color: #727272;
+        font-size: 15px;
+        line-height: 28px;
+        margin-bottom: 20px;
+    }
+
+    .contact-icon {
+        color: #615CFD;
+        margin-right: 15px;
+        font-size: 20px;
+        width: 20px;
+        text-align: center;
+    }
+
+    /* Navigation buttons styling */
+    .nav-buttons {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 15px 0;
+        text-align: center;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    .nav-buttons a {
+        color: #001D38;
+        text-decoration: none;
+        padding: 10px 20px;
+        margin: 0 10px;
+        font-size: 16px;
+        font-weight: 500;
+        transition: color 0.3s ease;
+    }
+
+    .nav-buttons a:hover,
+    .nav-buttons a.active {
+        color: #615CFD;
+    }
+
+    /* Breadcrumb section styling to match your theme */
+    .bradcam_area {
+        padding: 170px 0;
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<!-- Navigation Buttons -->
+<div class="nav-buttons">
+    @Html.ActionLink("Home", "Index", "Home")
+    @Html.ActionLink("About", "About", "Home")
+    @Html.ActionLink("Recipes", "Recipes", "Home")
+    @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "active" })
+    @Html.ActionLink("Login", "Index", "Login")
+</div>
+
+<!-- Breadcrumb Area -->
+<div class="bradcam_area" style="background-image: url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80')">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Contact Us</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="contact-section">
+    <div class="container">
+        <h2 class="contact-title">Get in Touch</h2>
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="contact-box">
+                    <form>
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user contact-icon"></i>Your Name
+                            </label>
+                            <input type="text" class="form-control" id="name" placeholder="Enter your name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope contact-icon"></i>Email Address
+                            </label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter your email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fas fa-comment contact-icon"></i>Message
+                            </label>
+                            <textarea class="form-control" id="message" rows="5" placeholder="Write your message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-submit">Send Message</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="contact-info">
+                    <h4>Contact Information</h4>
+                    <p>
+                        <i class="fas fa-map-marker-alt contact-icon"></i>
+                        123 Recipe Street<br />
+                        Cooking City, CC 12345
+                    </p>
+                    <p>
+                        <i class="fas fa-envelope contact-icon"></i>
+                        info@yourrecipesite.com
+                    </p>
+                    <p>
+                        <i class="fas fa-phone contact-icon"></i>
+                        (123) 456-7890
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+} 
