@@ -41,6 +41,12 @@ namespace MRSTWeb.Controllers
             return View(recipe);
         }
 
+        // GET: Contact
+        public ActionResult Contact()
+        {
+            return View();
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
