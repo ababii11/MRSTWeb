@@ -6,8 +6,18 @@
 }
 
 <style>
+    /* Override header styles for login page */
+    .header-area {
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .header-area #navigation li a {
+        color: white !important;
+    }
+
     .login-section {
-        min-height: calc(100vh - 200px);
+        min-height: 100vh;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -16,19 +26,26 @@
         background-size: cover;
         background-position: center;
         background-attachment: fixed;
-        padding: 80px 0;
-        margin-top: -20px;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: -90px;
+        z-index: 0;
     }
 
     .login-box {
         background: rgba(255, 255, 255, 0.97);
-        padding: 40px;
+        padding: 40px 40px 30px;
         border-radius: 15px;
         box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
         max-width: 400px;
         width: 100%;
         position: relative;
         backdrop-filter: blur(10px);
+        margin-top: 90px;
+        margin-right: auto;
+        margin-left: auto;
+        transform: translateX(0); /* Ensure perfect centering */
     }
 
     .login-title {
@@ -36,7 +53,38 @@
         font-size: 42px;
         color: #001D38;
         text-align: center;
-        margin-bottom: 30px;
+        margin: -10px auto 30px;
+        padding: 0;
+        width: 100%;
+        display: block;
+        position: relative;
+        transform: translateX(0); /* Ensure perfect centering */
+        line-height: 1.2;
+    }
+
+    .container {
+        max-width: 1140px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-right: 15px;
+        padding-left: 15px;
+        width: 100%;
+    }
+
+    .row.justify-content-center {
+        display: flex;
+        justify-content: center;
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+
+    .col-md-6 {
+        position: relative;
+        width: 100%;
+        padding-right: 15px;
+        padding-left: 15px;
+        display: flex;
+        justify-content: center;
     }
 
     .form-group {
@@ -93,12 +141,15 @@
         cursor: pointer;
         transition: all 0.3s ease;
         margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(97, 92, 253, 0.3);
     }
 
     .btn-login:hover {
         background: #FF008C;
         transform: translateY(-2px);
-        box-shadow: 0 5px 15px rgba(255, 0, 140, 0.3);
+        box-shadow: 0 6px 20px rgba(255, 0, 140, 0.4);
     }
 
     .forgot-password {
@@ -110,11 +161,13 @@
         color: #615CFD;
         text-decoration: none;
         font-size: 14px;
+        font-weight: 500;
         transition: color 0.3s ease;
     }
 
     .forgot-password a:hover {
         color: #FF008C;
+        text-decoration: underline;
     }
 
     .register-link {
@@ -133,12 +186,13 @@
     .register-link a {
         color: #615CFD;
         text-decoration: none;
-        font-weight: 500;
+        font-weight: 600;
         transition: color 0.3s ease;
     }
 
     .register-link a:hover {
         color: #FF008C;
+        text-decoration: underline;
     }
 
     .validation-summary-errors {
@@ -162,10 +216,12 @@
         display: block;
     }
 
-    /* Override header styles for login page */
-    .header-area {
-        background: rgba(255, 255, 255, 0.95);
-        box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    @@media screen and (min-width: 768px) {
+        .col-md-6 {
+            flex: 0 0 50%;
+            max-width: 50%;
+            margin: 0 auto;
+        }
     }
 </style>
 
