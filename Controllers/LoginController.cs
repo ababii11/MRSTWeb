@@ -1,28 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.UI.WebControls;
-using eUseControl.BusinessLogic;
-using eUseControl.BusinessLogic.Interfaces;
+﻿using System.Web.Mvc;
+using System.Web.Security;
 using eUseControl.Domain.Entities.User;
-using static System.Collections.Specialized.BitVector32;
+using MRSTWeb.Models;
 
-namespace eUseControl.web
+namespace MRSTWeb.Controllers
 {
     public class LoginController : Controller
     {
-        private readonly ISession _session;
-        public LoginController()
-        {
-            var bl = new BussinesLogic();
-            _session = bl.GetSessionBL();
-        }
-
-        //GET lOGIN
+        // GET: Login
         public ActionResult Index()
         {
             return View();
@@ -30,29 +15,29 @@ namespace eUseControl.web
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(UserLogin login)
+        public ActionResult Index(UserLogin model)
         {
             if (ModelState.IsValid)
             {
-                ULoginData data = new ULoginData
+                var user = AccountController.GetUserByCredentials(model.Credential, model.Password);
+                
+                if (user != null)
                 {
-                    Credential = login.Credential,
-                    Password = login.Password,
-                    LoginIp = Request.UserHostAddress,
-                    LoginDateTime = DateTime.Now
-                };
-                var userLogin = _session.UserLogin(data);
-                if (userLogin.Status)
-                {
+                    FormsAuthentication.SetAuthCookie(user.Username, false);
                     return RedirectToAction("Index", "Home");
                 }
-                else
-                {
-                    ModelState.AddModelError("", userLogin.StatusMsg);
-                    return View();
-                }
+                
+                ModelState.AddModelError("", "Invalid username/email or password");
             }
-            return View();
+
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }
