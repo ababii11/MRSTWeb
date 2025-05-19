@@ -43,7 +43,18 @@
                                         <li>@Html.ActionLink("About", "About", "Home")</li>
                                         <li>@Html.ActionLink("Recipes", "Recipes", "Home")</li>
                                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                                        <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                                        @if (User.Identity.IsAuthenticated)
+                                        {
+                                            if (User.IsInRole("Admin"))
+                                            {
+                                                <li>@Html.ActionLink("Admin Dashboard", "Index", "Admin", null, new { @class = "admin-link" })</li>
+                                            }
+                                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                                        }
+                                        else
+                                        {
+                                            <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                                        }
                                     </ul>
                                 </nav>
                             </div>
@@ -84,5 +95,17 @@
     <script src="~/Scripts/vendor/main.js"></script>
     
     @RenderSection("scripts", required: false)
+
+    <style>
+        /* Add this to your existing styles */
+        .admin-link {
+            color: #FF008C !important;
+            font-weight: bold;
+        }
+
+        .admin-link:hover {
+            color: #001D38 !important;
+        }
+    </style>
 </body>
 </html>

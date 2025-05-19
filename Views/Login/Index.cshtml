@@ -29,8 +29,9 @@
         padding: 0;
         margin: 0;
         position: relative;
-        top: -90px;
+        top: 0;
         z-index: 0;
+        padding-top: 100px; /* Add padding to account for navigation */
     }
 
     .login-box {
@@ -42,10 +43,7 @@
         width: 100%;
         position: relative;
         backdrop-filter: blur(10px);
-        margin-top: 90px;
-        margin-right: auto;
-        margin-left: auto;
-        transform: translateX(0); /* Ensure perfect centering */
+        margin: 0 auto; /* Center horizontally */
     }
 
     .login-title {
@@ -181,6 +179,9 @@
         color: #727272;
         font-size: 15px;
         margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
     .register-link a {
@@ -223,6 +224,30 @@
             margin: 0 auto;
         }
     }
+
+    .btn-register-now {
+        display: inline-block;
+        background: #FF008C;
+        color: #fff;
+        padding: 10px 25px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        margin-left: 10px;
+        box-shadow: 0 4px 15px rgba(255, 0, 140, 0.3);
+    }
+
+    .btn-register-now:hover {
+        background: #001D38;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 29, 56, 0.4);
+        color: #fff;
+        text-decoration: none;
+    }
 </style>
 
 <div class="login-section">
@@ -259,7 +284,7 @@
                         </button>
 
                         <div class="register-link">
-                            <p>Don't have an account? <a href="#">Register Now</a></p>
+                            <p>Don't have an account? <a href="@Url.Action("Register", "Account")" class="btn btn-register-now">Register Now</a></p>
                         </div>
                     }
                 </div>

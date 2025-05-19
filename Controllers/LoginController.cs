@@ -23,7 +23,23 @@ namespace MRSTWeb.Controllers
                 
                 if (user != null)
                 {
-                    FormsAuthentication.SetAuthCookie(user.Username, false);
+                    // Create authentication ticket with user role
+                    var authTicket = new FormsAuthenticationTicket(
+                        1,                              // version
+                        user.Username,                  // user name
+                        DateTime.Now,                   // issue time
+                        DateTime.Now.AddMinutes(30),    // expiry time
+                        false,                          // do not remember
+                        user.Role                       // user role
+                    );
+
+                    // Encrypt the ticket
+                    string encryptedTicket = FormsAuthentication.Encrypt(authTicket);
+
+                    // Create the cookie
+                    var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    Response.Cookies.Add(authCookie);
+
                     return RedirectToAction("Index", "Home");
                 }
                 
