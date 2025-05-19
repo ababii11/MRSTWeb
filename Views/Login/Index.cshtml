@@ -5,32 +5,56 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container mt-5">
+<div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="text-center">Login</h3>
+            <div class="card shadow-lg">
+                <div class="card-header bg-primary text-white text-center py-4">
+                    <h3 class="mb-0" style="font-family: 'Satisfy', cursive;">Welcome Back</h3>
+                    <p class="small mb-0">Sign in to continue</p>
                 </div>
-                <div class="card-body">
-                    @using (Html.BeginForm("Index", "Login", FormMethod.Post))
+                <div class="card-body p-4">
+                    @if (TempData["SuccessMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            @TempData["SuccessMessage"]
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    }
+
+                    @using (Html.BeginForm("Index", "Login", FormMethod.Post, new { @class = "needs-validation" }))
                     {
                         @Html.AntiForgeryToken()
-                        <div class="form-group">
-                            @Html.LabelFor(m => m.Credential)
-                            @Html.TextBoxFor(m => m.Credential, new { @class = "form-control" })
+                        @Html.ValidationSummary(true, "", new { @class = "alert alert-danger" })
+
+                        <div class="form-group mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                @Html.TextBoxFor(m => m.Credential, new { @class = "form-control", placeholder = "Username or Email" })
+                            </div>
                             @Html.ValidationMessageFor(m => m.Credential, "", new { @class = "text-danger" })
                         </div>
-                        <div class="form-group mt-3">
-                            @Html.LabelFor(m => m.Password)
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+                        <div class="form-group mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                            </div>
                             @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
                         </div>
-                        <div class="text-danger">
-                            @Html.ValidationSummary(true)
+
+                        <div class="text-end mb-3">
+                            <a href="#" class="text-primary text-decoration-none" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">Forgot Password?</a>
                         </div>
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
+
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fa fa-sign-in-alt me-2"></i> Login
+                            </button>
+                        </div>
+
+                        <div class="text-center mt-4">
+                            <p class="mb-0">Don't have an account? <a href="#" class="text-primary fw-bold" data-bs-toggle="modal" data-bs-target="#registerModal">Register Now</a></p>
                         </div>
                     }
                 </div>
@@ -39,6 +63,210 @@
     </div>
 </div>
 
+<!-- Register Modal -->
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="registerModalLabel">Create Account</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "needs-validation", id = "registerForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group mb-3">
+                        <label class="form-label">Username</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                            <input type="text" class="form-control" name="Username" required placeholder="Choose a username" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control" name="Email" required placeholder="Enter your email" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-3">
+                        <label class="form-label">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" name="Password" required placeholder="Create a password" />
+                        </div>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label class="form-label">Confirm Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-lock"></i></span>
+                            <input type="password" class="form-control" name="ConfirmPassword" required placeholder="Confirm your password" />
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-user-plus me-2"></i> Create Account
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="forgotPasswordModalLabel">Reset Password</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("ForgotPassword", "Account", FormMethod.Post, new { @class = "needs-validation", id = "forgotPasswordForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group mb-3">
+                        <label class="form-label">Email Address</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                            <input type="email" class="form-control" name="Credential" required placeholder="Enter your email address" />
+                        </div>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fa fa-key me-2"></i> Reset Password
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 15px;
+    }
+
+    .card-header {
+        border-radius: 15px 15px 0 0 !important;
+    }
+
+    .input-group-text {
+        background-color: transparent;
+        border-right: none;
+    }
+
+    .form-control {
+        border-left: none;
+    }
+
+    .form-control:focus {
+        border-color: #ced4da;
+        box-shadow: none;
+    }
+
+    .input-group:focus-within {
+        box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+    }
+
+    .btn-primary {
+        background-color: #6c63ff;
+        border-color: #6c63ff;
+        padding: 12px;
+        font-weight: 500;
+    }
+
+    .btn-primary:hover {
+        background-color: #5952d4;
+        border-color: #5952d4;
+    }
+
+    .alert {
+        border-radius: 10px;
+    }
+
+    .modal-content {
+        border-radius: 15px;
+        border: none;
+    }
+
+    .modal-header {
+        border-radius: 15px 15px 0 0;
+    }
+
+    .modal .form-label {
+        font-weight: 500;
+        color: #495057;
+    }
+
+    .modal-backdrop.show {
+        opacity: 0.7;
+    }
+
+    .modal.fade .modal-dialog {
+        transition: transform .2s ease-out;
+    }
+
+    .modal.show .modal-dialog {
+        transform: none;
+    }
+</style>
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            // Input focus effects
+            $('.input-group .form-control').focus(function () {
+                $(this).closest('.input-group').addClass('border-primary');
+            }).blur(function () {
+                $(this).closest('.input-group').removeClass('border-primary');
+            });
+
+            // Form submission handling
+            $('#registerForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: this.action,
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            $('#registerModal').modal('hide');
+                            location.reload();
+                        } else {
+                            alert(response.message || 'Registration failed. Please try again.');
+                        }
+                    },
+                    error: function () {
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+
+            $('#forgotPasswordForm').on('submit', function (e) {
+                e.preventDefault();
+                $.ajax({
+                    url: this.action,
+                    type: 'POST',
+                    data: $(this).serialize(),
+                    success: function (response) {
+                        $('#forgotPasswordModal').modal('hide');
+                        alert('If an account exists with this email, you will receive password reset instructions.');
+                    },
+                    error: function () {
+                        alert('An error occurred. Please try again.');
+                    }
+                });
+            });
+        });
+    </script>
 } 

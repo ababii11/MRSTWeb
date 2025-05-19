@@ -292,7 +292,7 @@
       <Name>eUseControl.BusinessLogic</Name>
     </ProjectReference>
     <ProjectReference Include="..\eUseControl.Domain\eUseControl.Domain.csproj">
-      <Project>{bdf02569-5f89-4e07-8d4c-a553a13470ed}</Project>
+      <Project>{E9B53FBF-E5F9-4F87-8E1C-BA3D95B3D098}</Project>
       <Name>eUseControl.Domain</Name>
     </ProjectReference>
   </ItemGroup>

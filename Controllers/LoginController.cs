@@ -1,28 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Runtime.InteropServices;
-using System.Web;
 using System.Web.Mvc;
-using System.Web.UI.WebControls;
+using System.Web.Security;
 using eUseControl.BusinessLogic;
 using eUseControl.BusinessLogic.Interfaces;
 using eUseControl.Domain.Entities.User;
-using static System.Collections.Specialized.BitVector32;
 
-namespace eUseControl.web
+namespace eUseControl.web.Controllers
 {
     public class LoginController : Controller
     {
         private readonly ISession _session;
+
         public LoginController()
         {
             var bl = new BussinesLogic();
             _session = bl.GetSessionBL();
         }
 
-        //GET lOGIN
+        // GET: Login
         public ActionResult Index()
         {
             return View();
@@ -34,25 +29,42 @@ namespace eUseControl.web
         {
             if (ModelState.IsValid)
             {
-                ULoginData data = new ULoginData
+                try
                 {
-                    Credential = login.Credential,
-                    Password = login.Password,
-                    LoginIp = Request.UserHostAddress,
-                    LoginDateTime = DateTime.Now
-                };
-                var userLogin = _session.UserLogin(data);
-                if (userLogin.Status)
-                {
-                    return RedirectToAction("Index", "Home");
+                    ULoginData data = new ULoginData
+                    {
+                        Credential = login.Credential,
+                        Password = login.Password,
+                        LoginIp = Request.UserHostAddress,
+                        LoginDateTime = DateTime.Now
+                    };
+
+                    var response = _session.UserLogin(data);
+                    if (response != null && response.Status)
+                    {
+                        if (response.User != null)
+                        {
+                            FormsAuthentication.SetAuthCookie(response.User.Username, false);
+                            return RedirectToAction("Index", "Home");
+                        }
+                    }
+                    
+                    ModelState.AddModelError("", response?.StatusMsg ?? "Invalid login attempt");
                 }
-                else
+                catch (Exception ex)
                 {
-                    ModelState.AddModelError("", userLogin.StatusMsg);
-                    return View();
+                    ModelState.AddModelError("", "An error occurred during login. Please try again.");
                 }
             }
-            return View();
+
+            return View(login);
+        }
+
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
         }
     }
 }

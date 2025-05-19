@@ -1,0 +1,230 @@
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="contact-section py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-lg">
+                    <div class="card-body p-5">
+                        <h2 class="text-center mb-4" style="font-family: 'Satisfy', cursive; color: #333;">Get in Touch</h2>
+                        <p class="text-center text-muted mb-5">We'd love to hear from you! Send us a message and we'll respond as soon as possible.</p>
+
+                        <form id="contactForm" class="needs-validation" novalidate>
+                            <div class="row">
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Your Name</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa fa-user"></i></span>
+                                            <input type="text" class="form-control" placeholder="Enter your name" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-4">
+                                    <div class="form-group">
+                                        <label class="form-label">Email Address</label>
+                                        <div class="input-group">
+                                            <span class="input-group-text"><i class="fa fa-envelope"></i></span>
+                                            <input type="email" class="form-control" placeholder="Enter your email" required>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label">Subject</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-tag"></i></span>
+                                    <input type="text" class="form-control" placeholder="What is this about?" required>
+                                </div>
+                            </div>
+
+                            <div class="form-group mb-4">
+                                <label class="form-label">Your Message</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fa fa-comment"></i></span>
+                                    <textarea class="form-control" rows="5" placeholder="Type your message here..." required></textarea>
+                                </div>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fa fa-paper-plane me-2"></i> Send Message
+                                </button>
+                            </div>
+                        </form>
+
+                        <div class="row mt-5 pt-4 border-top">
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="contact-info">
+                                    <i class="fa fa-map-marker-alt fa-2x mb-3 text-primary"></i>
+                                    <h5>Address</h5>
+                                    <p class="text-muted">123 Recipe Street<br>Cooking City, CC 12345</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="contact-info">
+                                    <i class="fa fa-phone fa-2x mb-3 text-primary"></i>
+                                    <h5>Phone</h5>
+                                    <p class="text-muted">+1 (555) 123-4567</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 text-center mb-4">
+                                <div class="contact-info">
+                                    <i class="fa fa-envelope fa-2x mb-3 text-primary"></i>
+                                    <h5>Email</h5>
+                                    <p class="text-muted">hello@tastyrecipes.com</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .contact-section {
+        background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)),
+                    url('https://images.unsplash.com/photo-1495195134817-aeb325a55b65?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        min-height: 100vh;
+        padding-top: 100px;
+    }
+
+    .card {
+        border: none;
+        border-radius: 15px;
+        background: rgba(255, 255, 255, 0.98);
+    }
+
+    .input-group-text {
+        background-color: transparent;
+        border-right: none;
+    }
+
+    .form-control {
+        border-left: none;
+        padding: 12px;
+    }
+
+    .form-control:focus {
+        border-color: #ced4da;
+        box-shadow: none;
+    }
+
+    .input-group:focus-within {
+        box-shadow: 0 0 0 0.2rem rgba(108, 99, 255, 0.25);
+    }
+
+    .form-label {
+        font-weight: 500;
+        color: #495057;
+        margin-bottom: 8px;
+    }
+
+    .btn-primary {
+        background-color: #6c63ff;
+        border-color: #6c63ff;
+        padding: 12px;
+        font-weight: 500;
+    }
+
+    .btn-primary:hover {
+        background-color: #5952d4;
+        border-color: #5952d4;
+    }
+
+    .contact-info {
+        padding: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .contact-info:hover {
+        transform: translateY(-5px);
+    }
+
+    .contact-info i {
+        color: #6c63ff;
+    }
+
+    .contact-info h5 {
+        margin: 15px 0;
+        color: #333;
+        font-weight: 600;
+    }
+
+    textarea.form-control {
+        min-height: 120px;
+    }
+
+    /* Add a subtle animation to the form inputs */
+    .form-control:focus + .input-group-text,
+    .input-group-text + .form-control:focus {
+        border-color: #6c63ff;
+    }
+
+    /* Custom scrollbar for textarea */
+    textarea::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    textarea::-webkit-scrollbar-track {
+        background: #f1f1f1;
+        border-radius: 4px;
+    }
+
+    textarea::-webkit-scrollbar-thumb {
+        background: #6c63ff;
+        border-radius: 4px;
+    }
+
+    textarea::-webkit-scrollbar-thumb:hover {
+        background: #5952d4;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Form validation
+            $('#contactForm').on('submit', function(e) {
+                e.preventDefault();
+                if (this.checkValidity()) {
+                    // Show success message
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Message Sent!',
+                        text: 'We\'ll get back to you as soon as possible.',
+                        confirmButtonColor: '#6c63ff'
+                    });
+                    this.reset();
+                } else {
+                    e.stopPropagation();
+                }
+                $(this).addClass('was-validated');
+            });
+
+            // Input focus effects
+            $('.input-group .form-control').focus(function() {
+                $(this).closest('.input-group').addClass('border-primary');
+            }).blur(function() {
+                $(this).closest('.input-group').removeClass('border-primary');
+            });
+
+            // Smooth scroll for anchor links
+            $('a[href^="#"]').on('click', function(e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('href')).offset().top - 100
+                }, 500);
+            });
+        });
+    </script>
+} 

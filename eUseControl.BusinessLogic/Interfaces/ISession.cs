@@ -9,6 +9,14 @@ namespace eUseControl.BusinessLogic.Interfaces
 {
     public interface ISession
     {
-        dynamic UserLogin(ULoginData data);
+        SessionResponse UserLogin(ULoginData data);
+        SessionResponse RegisterUser(User model);
+    }
+
+    public class SessionResponse
+    {
+        public bool Status { get; set; }
+        public string StatusMsg { get; set; }
+        public User User { get; set; }
     }
 }
