@@ -2,14 +2,24 @@ using System;
 using System.Web.Mvc;
 using System.Web.Security;
 using eUseControl.Domain.Entities.User;
-using MRSTWeb.Models;
+using eUseControl.Domain.Entities.Recipe;
+using eUseControl.BusinessLogic;
+using eUseControl.BusinessLogic.Interfaces;
 
 namespace MRSTWeb.Controllers
 {
     [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
-        private ReteteContext db = new ReteteContext();
+        private readonly IRecipeService _recipeService;
+        private readonly ICategoryService _categoryService;
+
+        public AdminController()
+        {
+            var bl = new BusinessLogic();
+            _recipeService = bl.GetRecipeService();
+            _categoryService = bl.GetCategoryService();
+        }
 
         // GET: Admin
         public ActionResult Index()
@@ -20,14 +30,14 @@ namespace MRSTWeb.Controllers
         // GET: Admin/ManageRecipes
         public ActionResult ManageRecipes()
         {
-            var recipes = db.Recipes.Include(r => r.Category).ToList();
+            var recipes = _recipeService.GetAllRecipes().ToList();
             return View(recipes);
         }
 
         // GET: Admin/ManageCategories
         public ActionResult ManageCategories()
         {
-            var categories = db.Categories.ToList();
+            var categories = _categoryService.GetAllCategories().ToList();
             return View(categories);
         }
 
@@ -41,7 +51,7 @@ namespace MRSTWeb.Controllers
         // GET: Admin/EditRecipe/5
         public ActionResult EditRecipe(int id)
         {
-            var recipe = db.Recipes.Find(id);
+            var recipe = _recipeService.GetRecipeById(id);
             if (recipe == null)
             {
                 return HttpNotFound();
@@ -56,8 +66,7 @@ namespace MRSTWeb.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(recipe).State = System.Data.Entity.EntityState.Modified;
-                db.SaveChanges();
+                _recipeService.UpdateRecipe(recipe);
                 return RedirectToAction("ManageRecipes");
             }
             return View(recipe);
@@ -66,7 +75,7 @@ namespace MRSTWeb.Controllers
         // GET: Admin/DeleteRecipe/5
         public ActionResult DeleteRecipe(int id)
         {
-            var recipe = db.Recipes.Find(id);
+            var recipe = _recipeService.GetRecipeById(id);
             if (recipe == null)
             {
                 return HttpNotFound();
@@ -79,19 +88,8 @@ namespace MRSTWeb.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteRecipeConfirmed(int id)
         {
-            var recipe = db.Recipes.Find(id);
-            db.Recipes.Remove(recipe);
-            db.SaveChanges();
+            _recipeService.DeleteRecipe(id);
             return RedirectToAction("ManageRecipes");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 } 
