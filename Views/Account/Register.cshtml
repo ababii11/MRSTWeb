@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<<<<<<< HEAD
 <div class="container py-5">
     <div class="row justify-content-center">
         <div class="col-md-6">
@@ -59,6 +60,219 @@
 
                         <div class="text-center mt-4">
                             <p class="mb-0">Already have an account? @Html.ActionLink("Sign In", "Index", "Login", null, new { @class = "text-primary fw-bold" })</p>
+=======
+<style>
+    .register-section {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+                    url('https://images.unsplash.com/photo-1543353071-873f17a7a088?ixlib=rb-1.2.1&auto=format&fit=crop&w=1920&q=80');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+        padding: 0;
+        margin: 0;
+        position: relative;
+        top: 0;
+        z-index: 0;
+        padding-top: 100px;
+    }
+
+    .register-box {
+        background: rgba(255, 255, 255, 0.97);
+        padding: 40px 40px 30px;
+        border-radius: 15px;
+        box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        max-width: 500px;
+        width: 100%;
+        position: relative;
+        backdrop-filter: blur(10px);
+        margin: 0 auto;
+    }
+
+    .register-title {
+        font-family: "Satisfy", cursive;
+        font-size: 42px;
+        color: #001D38;
+        text-align: center;
+        margin: -10px auto 30px;
+        padding: 0;
+        width: 100%;
+        display: block;
+        position: relative;
+        line-height: 1.2;
+    }
+
+    .form-group {
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    .form-group label {
+        color: #001D38;
+        font-weight: 500;
+        margin-bottom: 10px;
+        font-size: 16px;
+        display: block;
+    }
+
+    .form-control {
+        height: 50px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2px solid #e8e8e8;
+        border-radius: 8px;
+        padding: 0 20px;
+        font-size: 15px;
+        font-weight: 400;
+        color: #001D38;
+        transition: all 0.3s ease;
+    }
+
+    .form-control:focus {
+        border-color: #615CFD;
+        box-shadow: 0 0 15px rgba(97, 92, 253, 0.1);
+    }
+
+    .input-icon {
+        position: absolute;
+        top: 43px;
+        left: 15px;
+        color: #615CFD;
+        font-size: 18px;
+    }
+
+    .input-with-icon {
+        padding-left: 45px;
+    }
+
+    .btn-register {
+        background: #FF008C;
+        color: #fff;
+        padding: 15px 30px;
+        font-size: 16px;
+        font-weight: 500;
+        border: none;
+        border-radius: 8px;
+        width: 100%;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: 10px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        box-shadow: 0 4px 15px rgba(255, 0, 140, 0.3);
+    }
+
+    .btn-register:hover {
+        background: #001D38;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(0, 29, 56, 0.4);
+    }
+
+    .login-link {
+        text-align: center;
+        margin-top: 25px;
+        padding-top: 20px;
+        border-top: 1px solid #e8e8e8;
+    }
+
+    .login-link p {
+        color: #727272;
+        font-size: 15px;
+        margin: 0;
+    }
+
+    .login-link a {
+        color: #615CFD;
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .login-link a:hover {
+        color: #FF008C;
+        text-decoration: underline;
+    }
+
+    .validation-summary-errors {
+        color: #dc3545;
+        background: rgba(220, 53, 69, 0.1);
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    .validation-summary-errors ul {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+    }
+
+    .field-validation-error {
+        color: #dc3545;
+        font-size: 13px;
+        margin-top: 5px;
+        display: block;
+    }
+
+    /* Override header styles */
+    .header-area {
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
+    .header-area #navigation li a {
+        color: white !important;
+    }
+</style>
+
+<div class="register-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="register-box">
+                    <h2 class="register-title">Create Account</h2>
+                    @using (Html.BeginForm("Register", "Account", FormMethod.Post))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+
+                        <div class="form-group">
+                            <label for="Username">Username</label>
+                            <i class="fas fa-user input-icon"></i>
+                            @Html.TextBoxFor(m => m.Username, new { @class = "form-control input-with-icon", placeholder = "Choose a username" })
+                            @Html.ValidationMessageFor(m => m.Username)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Email">Email</label>
+                            <i class="fas fa-envelope input-icon"></i>
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control input-with-icon", placeholder = "Enter your email" })
+                            @Html.ValidationMessageFor(m => m.Email)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="Password">Password</label>
+                            <i class="fas fa-lock input-icon"></i>
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control input-with-icon", placeholder = "Create a password" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </div>
+
+                        <div class="form-group">
+                            <label for="ConfirmPassword">Confirm Password</label>
+                            <i class="fas fa-lock input-icon"></i>
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control input-with-icon", placeholder = "Confirm your password" })
+                            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+                        </div>
+
+                        <button type="submit" class="btn btn-register">
+                            <i class="fas fa-user-plus mr-2"></i> Create Account
+                        </button>
+
+                        <div class="login-link">
+                            <p>Already have an account? <a href="@Url.Action("Index", "Login")">Login Here</a></p>
+>>>>>>> c1665d64de476b3ecb81eabcb36102bbe5e52cdb
                         </div>
                     }
                 </div>
@@ -67,6 +281,7 @@
     </div>
 </div>
 
+<<<<<<< HEAD
 <style>
     .card {
         border: none;
@@ -119,4 +334,9 @@
             });
         });
     </script>
+=======
+@section Scripts {
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+>>>>>>> c1665d64de476b3ecb81eabcb36102bbe5e52cdb
 } 

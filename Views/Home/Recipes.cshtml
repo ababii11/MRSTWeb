@@ -1,0 +1,86 @@
+@model IEnumerable<MRSTWeb.Models.Recipe>
+@{
+    ViewBag.Title = "Recipes";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>Our Recipes</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /bradcam_area  -->
+
+<!-- recepie_area_start  -->
+<div class="recepie_area plus_padding">
+    <div class="container">
+        <div class="row">
+            @foreach (var recipe in Model)
+            {
+                <div class="col-xl-4 col-lg-4 col-md-6">
+                    <div class="single_recepie text-center">
+                        <div class="recepie_thumb">
+                            <img src="@Url.Content(recipe.ImageUrl)" alt="@recipe.Name">
+                        </div>
+                        <h3>@recipe.Name</h3>
+                        <span>@recipe.Category.Name</span>
+                        <div class="recipe_info">
+                            <p><strong>Time Needs:</strong> @(recipe.PrepTime + recipe.CookTime) Mins</p>
+                            <div class="ingredients_preview">
+                                <p><strong>Ingredients:</strong></p>
+                                <p class="ingredients_text">@recipe.Ingredients</p>
+                            </div>
+                        </div>
+                        <a href="@Url.Action("RecipeDetails", "Home", new { id = recipe.RecipeId })" class="line_btn">View Full Recipe</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!-- /recepie_area_end  -->
+
+<style>
+    .recipe_info {
+        padding: 15px;
+        margin: 10px 0;
+        background-color: #f9f9f9;
+        border-radius: 5px;
+    }
+
+    .ingredients_preview {
+        margin-top: 10px;
+        text-align: left;
+    }
+
+    .ingredients_text {
+        font-size: 14px;
+        color: #666;
+        margin-top: 5px;
+        line-height: 1.4;
+        /* Show only 3 lines of text */
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .single_recepie {
+        margin-bottom: 30px;
+        padding: 15px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        transition: all 0.3s ease;
+    }
+
+    .single_recepie:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+</style> 

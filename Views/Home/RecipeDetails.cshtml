@@ -1,0 +1,62 @@
+@model MRSTWeb.Models.Recipe
+@{
+    ViewBag.Title = Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- bradcam_area  -->
+<div class="bradcam_area bradcam_bg_1">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-12">
+                <div class="bradcam_text text-center">
+                    <h3>@Model.Name</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /bradcam_area  -->
+
+<div class="recepie_details_area">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-xl-6 col-md-6">
+                <div class="recepie_thumb">
+                    <img class="img-fluid" src="@Url.Content(Model.ImageUrl)" alt="@Model.Name">
+                </div>
+            </div>
+            <div class="col-xl-6 col-md-6">
+                <div class="recepie_info">
+                    <h3>@Model.Name</h3>
+                    <p>@Model.Description</p>
+                    
+                    <div class="prep_time">
+                        <h4>Preparation Time:</h4>
+                        <p><i class="fa fa-clock-o"></i> @Model.PrepTime minutes</p>
+                    </div>
+                    
+                    <div class="cook_time">
+                        <h4>Cooking Time:</h4>
+                        <p><i class="fa fa-clock-o"></i> @Model.CookTime minutes</p>
+                    </div>
+                    
+                    <div class="ingredients">
+                        <h4>Ingredients:</h4>
+                        <p>@Model.Ingredients</p>
+                    </div>
+                    
+                    <div class="instructions">
+                        <h4>Instructions:</h4>
+                        <p>@Html.Raw(Model.Instructions.Replace("\n", "<br />"))</p>
+                    </div>
+                    
+                    <div class="category">
+                        <h4>Category:</h4>
+                        <p>@Model.Category.Name</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> 

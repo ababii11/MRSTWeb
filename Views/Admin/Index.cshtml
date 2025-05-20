@@ -1,0 +1,132 @@
+@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="admin-dashboard">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-12">
+                <h1 class="text-center mb-5" style="font-family: 'Satisfy', cursive;">Admin Dashboard</h1>
+            </div>
+        </div>
+
+        <div class="row">
+            <!-- Manage Recipes Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card admin-card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-utensils fa-3x mb-3 text-primary"></i>
+                        <h3 class="card-title">Manage Recipes</h3>
+                        <p class="card-text">Add, edit, or remove recipes from the website.</p>
+                        <a href="@Url.Action("ManageRecipes", "Admin")" class="btn btn-primary">Manage Recipes</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Categories Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card admin-card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-tags fa-3x mb-3 text-success"></i>
+                        <h3 class="card-title">Manage Categories</h3>
+                        <p class="card-text">Organize recipes by creating and managing categories.</p>
+                        <a href="@Url.Action("ManageCategories", "Admin")" class="btn btn-success">Manage Categories</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Manage Users Card -->
+            <div class="col-md-4 mb-4">
+                <div class="card admin-card h-100">
+                    <div class="card-body text-center">
+                        <i class="fas fa-users fa-3x mb-3 text-info"></i>
+                        <h3 class="card-title">Manage Users</h3>
+                        <p class="card-text">View and manage user accounts and permissions.</p>
+                        <a href="@Url.Action("ManageUsers", "Admin")" class="btn btn-info">Manage Users</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .admin-dashboard {
+        background-color: #f8f9fa;
+        min-height: calc(100vh - 200px);
+    }
+
+    .admin-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: none;
+        border-radius: 15px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .admin-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .admin-card .card-body {
+        padding: 2rem;
+    }
+
+    .admin-card .card-title {
+        font-family: "Satisfy", cursive;
+        margin: 1rem 0;
+        color: #333;
+    }
+
+    .admin-card .card-text {
+        color: #666;
+        margin-bottom: 1.5rem;
+    }
+
+    .admin-card .btn {
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .admin-card .btn-primary {
+        background-color: #FF008C;
+        border-color: #FF008C;
+    }
+
+    .admin-card .btn-primary:hover {
+        background-color: #001D38;
+        border-color: #001D38;
+    }
+
+    .admin-card .btn-success {
+        background-color: #28a745;
+        border-color: #28a745;
+    }
+
+    .admin-card .btn-success:hover {
+        background-color: #218838;
+        border-color: #218838;
+    }
+
+    .admin-card .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .admin-card .btn-info:hover {
+        background-color: #138496;
+        border-color: #138496;
+    }
+</style>
+
+@section Scripts {
+    <script>
+        $(document).ready(function() {
+            // Add any admin dashboard specific JavaScript here
+        });
+    </script>
+} 
